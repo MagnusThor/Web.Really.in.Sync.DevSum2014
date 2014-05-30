@@ -1,0 +1,104 @@
+﻿<div class="row">
+    
+    <div class="col-lg-12">
+        <h1>
+            Animals
+            &nbsp;<small>
+                      <button class="btn btn-sm" ng-click="toggleMute()">Mute</button>
+                  </small>
+        </h1>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+        <fieldset>
+            <legend>10 latest animals&nbsp;</legend>
+
+          
+            <table class="table table-bordered table-hover table-responsive">
+
+
+                <thead>
+                    <tr>
+                        <th class="col-lg-4 col-md-4">Name</th>
+                        <th class="col-lg-3 col-md-3">Species</th>
+                        <th class="col-lg-4 col-md-4">Created</th>
+                        <th class="col-lg-1 col-md-1">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="animal in animals ">
+                    <tr>
+                        <td>
+                            {{animal.Name}}
+                        </td>
+                        <td>
+                            {{animal.Species.Name}}
+                        </td>
+                        <td>{{animal.Created  | date:'yyyy-MM-dd'}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-default" ng-disabled="animal.Locked" ng-click="edit(animal)">
+
+
+                                <i class="glyphicon" ng-class="{'glyphicon-exclamation-sign' : animal.Locked,' glyphicon-edit':!animal.Locked }"></i>
+                                Edit
+                            </button>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </fieldset>
+
+
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <form role="form">
+
+
+
+            <legend>
+                Add & modify animal
+                
+                <small>
+                   
+                        <a href="#/species" class="btn btn-link">Add a new speices</a>
+                   
+
+                </small>
+            </legend>
+
+
+            <div class="form-group">
+                <label for="name" class="control-label">Name</label>
+
+                <input ng-model="animal.Name" id="name" name="name" type="text" placeholder="name of the animal.." class="form-control ">
+
+
+            </div>
+
+            <div class="form-group">
+                <label for="species" class="control-label">Species</label>
+
+                <select id="species" name="species" class="form-control" ng-model="animal.Species" ng-options="item as item.Name for item in species"></select>
+
+
+
+
+
+            </div>
+
+
+            <button class="btn btn-warning" ng-click="cancelEdit()">Cancel</button>
+            <button class="btn btn-primary" ng-click="saveOrUpdate()">SAVE</button>
+
+
+
+        </form>
+    </div>
+</div>
+
+
